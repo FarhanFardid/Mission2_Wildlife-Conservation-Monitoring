@@ -13,5 +13,18 @@ create TABLE species (
     discovery_date DATE NOT NULL,
     conservation_status VARCHAR(50) NOT NULL
 );
+
+-- Sightings Table creation
+create TABLE sightings (
+    sighting_id SERIAL UNIQUE PRIMARY KEY NOT NULL,
+    ranger_id INTEGER REFERENCES  rangers(ranger_id),
+    species_id INTEGER REFERENCES species(species_id),
+    sighting_time TIMESTAMP NOT NULL,
+    location VARCHAR(50) NOT NULL,
+    notes VARCHAR(50) DEFAULT 'Null'
+);
+
+
 SELECT * from rangers;
 SELECT * from species;
+SELECT * from sightings;
