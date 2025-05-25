@@ -67,8 +67,22 @@ select common_name from species LEFT JOIN sightings on species.species_id = sigh
 
 
 -- problem 6: Show the most recent 2 sightings.
-SELECT common_name, sighting_time, name from sightings JOIN rangers on sightings.ranger_id = rangers.ranger_id JOIN species on sightings.species_id= species.species_id ORDER BY  sighting_time DESC LIMIT 2;
+select common_name, sighting_time, name from sightings JOIN rangers on sightings.ranger_id = rangers.ranger_id JOIN species on sightings.species_id= species.species_id ORDER BY  sighting_time DESC LIMIT 2;
 
+-- problem 7: Update all species discovered before year 1800 to have status 'Historic'.
+
+update species set conservation_status='Historic' where extract (year from discovery_date) <1800;
+
+-- problem 8:  Label each sighting's time of day as 'Morning', 'Afternoon', or 'Evening'.
+select sighting_id,  CASE  WHEN Extract(hour FROM sighting_time) BETWEEN 1 AND 11 THEN 'Morning'
+        WHEN extract(hour FROM sighting_time) BETWEEN 12 AND 16 THEN 'Afternoon'
+        WHEN extract(hour FROM sighting_time) BETWEEN 17 AND 24 THEN 'Evening'
+    END as time_of_day FROM sightings;
+
+-- problem 9:  Delete rangers who have never sighted any species
+select rangers.ranger_id from rangers LEFT join sightings on rangers.ranger_id = sightings.ranger_id GROUP BY rangers.ranger_id HAVING COUNT(sightings.ranger_id) =0 ;
+
+DELETE from rangers where ranger_id = (select rangers.ranger_id from rangers LEFT join sightings on rangers.ranger_id = sightings.ranger_id GROUP BY rangers.ranger_id HAVING COUNT(sightings.ranger_id) =0);
 SELECT * from rangers;
 SELECT * from species;
 SELECT * from sightings;
