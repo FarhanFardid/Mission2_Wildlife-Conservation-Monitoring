@@ -24,6 +24,11 @@ create TABLE sightings (
     notes VARCHAR(50) DEFAULT 'Null'
 );
 
+-- inserting rangers data
+INSERT INTO rangers (name, region) VALUES 
+('Alice Green', 'Northern Hills'),
+('Bob White', 'River Delta'),
+('Carol King', 'Mountain Range');
 
 SELECT * from rangers;
 SELECT * from species;
