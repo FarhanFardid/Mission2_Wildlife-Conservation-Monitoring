@@ -24,11 +24,19 @@ create TABLE sightings (
     notes VARCHAR(50) DEFAULT 'Null'
 );
 
--- inserting rangers data
+-- Inserting rangers data
 INSERT INTO rangers (name, region) VALUES 
 ('Alice Green', 'Northern Hills'),
 ('Bob White', 'River Delta'),
 ('Carol King', 'Mountain Range');
+
+-- Inserting species data
+INSERT INTO species (common_name,scientific_name,discovery_date,conservation_status) VALUES 
+('Snow Leopard','Panthera uncia','1775-01-01','Endangered'),
+('Bengal Tiger','Panthera tigris tigris','1758-01-01','Endangered'),
+('Red Panda','Ailurus fulgens','1825-01-01','Vulnerable'),
+('Asiatic Elephant','Elephas maximus indicus','1758-01-01','Endangered');
+
 
 SELECT * from rangers;
 SELECT * from species;
