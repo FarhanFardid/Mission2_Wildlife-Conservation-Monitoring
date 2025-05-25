@@ -49,4 +49,6 @@ SELECT * from rangers;
 SELECT * from species;
 SELECT * from sightings;
 
+drop Table rangers;
 drop Table sightings;
+drop Table species;
