@@ -80,12 +80,12 @@ select sighting_id,  CASE  WHEN Extract(hour FROM sighting_time) BETWEEN 1 AND 1
     END as time_of_day FROM sightings;
 
 -- problem 9:  Delete rangers who have never sighted any species
-select rangers.ranger_id from rangers LEFT join sightings on rangers.ranger_id = sightings.ranger_id GROUP BY rangers.ranger_id HAVING COUNT(sightings.ranger_id) =0 ;
 
 DELETE from rangers where ranger_id = (select rangers.ranger_id from rangers LEFT join sightings on rangers.ranger_id = sightings.ranger_id GROUP BY rangers.ranger_id HAVING COUNT(sightings.ranger_id) =0);
-SELECT * from rangers;
-SELECT * from species;
-SELECT * from sightings;
+
+-- SELECT * from rangers;
+-- SELECT * from species;
+-- SELECT * from sightings;
 
 -- drop Table rangers;
 -- drop Table sightings;
